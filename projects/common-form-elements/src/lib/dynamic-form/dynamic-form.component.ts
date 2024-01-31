@@ -47,12 +47,6 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy  {
   ngOnChanges(changes: SimpleChanges): void {
     const formGroupData = {};
     const dependency = [];
-    if (changes['config']) {
-      if ((changes['config'].currentValue && changes['config'].firstChange)
-      || changes['config'].previousValue !== changes['config'].currentValue) {
-        this.initialize.emit(this.formGroup);
-      }
-    }
 
     if (this.statusChangesSubscription) {
       this.statusChangesSubscription.unsubscribe();
@@ -118,6 +112,13 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy  {
 
     this.emitInitialFormGroupValue();
     this.emitFormGroupStatus();
+
+    if (changes['config']) {
+      if ((changes['config'].currentValue && changes['config'].firstChange)
+      || changes['config'].previousValue !== changes['config'].currentValue) {
+        this.initialize.emit(this.formGroup);
+      }
+    }
   }
 
 
