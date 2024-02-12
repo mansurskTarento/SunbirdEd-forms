@@ -152,7 +152,7 @@ export class DynamicDropdownComponent implements OnInit, OnChanges, OnDestroy {
     // && this.context.value && this.field.association
     if (!_.isEmpty(this.depends)) {
       const filterDependencyTerms = this.filterDependencyTermsByLastChangedValue();
-      const filteredTerm = _.filter(filterDependencyTerms, terms => {
+      const filteredTerm = this.isDependsInvalid && this.field.showAllByDefault ? filterDependencyTerms : _.filter(filterDependencyTerms, terms => {
         return !_.isEmpty(this.field.output) ?
         _.includes(this.getParentValue(), terms[this.field.output]) :
         _.includes(this.getParentValue(), terms.name) ;

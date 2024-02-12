@@ -34,6 +34,7 @@
               [formControl]="localFrmControlRef"
               [(ngModel)]="selectedOptions"
               [compareWith]="comparer" 
+              [disabled]="config.templateOptions?.disabled"
               (selectionChange)="singleOptionSelected($event)">
                 <mat-option 
                 class="mat-dropdown__options" 

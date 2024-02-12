@@ -68,6 +68,10 @@ export class MaterialDropdownComponent implements OnInit, OnChanges {
     } else {
       this.selectedOptions = []
     }
+    if(this.selectedOptions && this.filteredOptions?.length > 0) {
+      const availableSelectedOptions = this.selectedOptions.filter(selectedOption => this.filteredOptions.find(option => option.value === selectedOption));
+      this.selectedOptions = availableSelectedOptions;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

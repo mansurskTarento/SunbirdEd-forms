@@ -117,6 +117,7 @@ export interface FieldConfig<T, F extends FieldConfigInputType = any> {
   sourceCategory?: string;
   association?: any;
   showInfo?:any;
+  showAllByDefault?: boolean;
 }
 
 export enum FilterType {

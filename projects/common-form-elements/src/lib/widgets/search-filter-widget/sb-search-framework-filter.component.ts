@@ -12,7 +12,7 @@ import {BaseSearchFilterComponent} from './base-search-filter.component';
 import {IFrameworkCategoryFilterFieldTemplateConfig} from './framework-category-filter-field-template-config';
 import {ISearchFilter} from './models/search-filter';
 import {CategoryTerm, FrameworkCategory} from '@project-sunbird/client-services/models';
-import {map, takeUntil, tap} from 'rxjs/operators';
+import {debounceTime, map, takeUntil, tap} from 'rxjs/operators';
 import {ISearchFrameworkAssociationsMap} from './models/framework';
 import {SearchFrameworkCategoryFormConfigAdapter} from './search-framework-category-form-config-adapter';
 import {TitleCasePipe} from '@angular/common';
@@ -80,6 +80,7 @@ export class SbSearchFrameworkFilterComponent extends BaseSearchFilterComponent 
   ngOnInit(): void {
     this.activatedRoute.queryParams
       .pipe(
+        debounceTime(1000),
         map(this.buildAggregatedSearchFilter.bind(this)),
         tap(this.saveOnResetSearchFilter.bind(this)),
         tap(this.updateCurrentFilter.bind(this)),

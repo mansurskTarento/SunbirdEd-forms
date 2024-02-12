@@ -46,6 +46,7 @@ export class SearchFrameworkCategoryFormConfigAdapter {
           label: config.labelText,
           placeHolder: config.placeholderText,
           multiple: config.multiple,
+          disabled: config.disabled ? config.disabled : false,
           autocomplete: config.autocomplete ? config.autocomplete : false,
           themeType: config.themeType ? config.themeType : ThemeType.MATERIAL,
           options: frameworkAssociationsMap[config.category] ?
